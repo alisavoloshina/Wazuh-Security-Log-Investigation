@@ -12,7 +12,6 @@ The investigation focuses on detecting and analyzing repeated failed authenticat
 * Assess whether the activity is a false positive or potentially suspicious.
 * Document the investigation process and recommended security actions.
 
----
 
 # Investigation Scenario
 
@@ -30,19 +29,16 @@ The investigation was conducted to answer the following questions:
 
 The authentication failures were intentionally generated in a controlled laboratory environment.
 
----
 
 # 1. Detection
 
 The investigation began after a failed authentication event was detected in the Wazuh Threat Hunting dashboard.
 
-### Evidence
 
-[Wazuh detected a failed login attempt.](screenshots/01-wazuh-detected-failed-login.png)
+![Wazuh detected a failed login attempt.](screenshots/01-wazuh-detected-failed-login.png)
 
 **Figure 1 — Wazuh detection of Windows authentication attempts.**
 
----
 
 # 2. Initial Event Analysis
 
@@ -71,13 +67,11 @@ These fields help answer the key questions of a SOC investigation:
 
 **How?** What type of logon was attempted?
 
-### Evidence
 
-[Windows Event ID 4625 details](https://github.com/alisavoloshina/Wazuh-Security-Log-Investigation/raw/main/screenshots/02-windows-4625-event-details.png)
+![Windows Event ID 4625 details](screenshots/02-windows-4625-event-details.png)
 
 **Figure 2 — Detailed Windows Event ID 4625 information in Wazuh.**
 
----
 
 # 3. Authentication Timeline
 
@@ -105,13 +99,11 @@ The following attributes were compared across the events:
 
 This made it possible to analyze individual log events as a single authentication sequence.
 
-### Evidence
 
-[Failed login timeline](https://github.com/alisavoloshina/Wazuh-Security-Log-Investigation/raw/main/screenshots/03-failed-login-timeline.png)
+![Failed login timeline](screenshots/03-failed-login-timeline.png)
 
 **Figure 3 — Timeline of repeated failed authentication attempts.**
 
----
 
 # 4. Correlation With Successful Authentication
 
@@ -147,13 +139,11 @@ The following attributes were compared across the events:
 
 A successful authentication following several failed attempts **does not by itself prove account compromise**. However, this sequence warrants further investigation, especially if the source, timing, or authentication context is unusual.
 
-### Evidence
 
-[Failed login attempts followed by a successful login](https://github.com/alisavoloshina/Wazuh-Security-Log-Investigation/raw/main/screenshots/04-failed-followed-by-successful-login.png)
+![Failed login attempts followed by a successful login](screenshots/04-failed-followed-by-successful-login.png)
 
 **Figure 4 — Failed authentication attempts followed by a successful authentication.**
 
----
 
 # Investigation Findings
 
@@ -168,7 +158,6 @@ The investigation established the following:
 
 Therefore, the activity was investigated as a **potentially suspicious authentication pattern** rather than automatically classified as an attack.
 
----
 
 # False Positive Assessment
 
